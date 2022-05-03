@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <title>Food For Your Mood</title>
 </head>
 <body>
-    
-        <div>
-            <label for="moods">What's Your Mood:</label> 
-            <form action="/mood_action" method="POST">
+    {% extends 'base.html' %}
+    {% block content %}
+        <div class ="main">
+            <label id="moods" for="moods">What's Your Mood:</label> 
+            <div id="form">
+             <form action="/mood_action" method="POST">
             <select id="mood" name="mood">
                 <option value="" disabled selected>Select a mood</option>
                 <option value="lazy">lazy</option>
                 <option value="cheerful">cheerful</option>
                 <option value="frantic">frantic</option>
-                <option value="comfort">I need comfort!</option>
+                <option value="comfort">I need comfort!</option>    
+            </div>  
         </div>
         <input type="submit" value="Give Me Food!">
+    {% endblock %}
     </form>
 </div>
 </body>

@@ -1,0 +1,36 @@
+body {
+    max-width: fit-content;
+    margin: auto;
+    display: grid;
+    grid-template: auto 1fr auto / auto 1fr auto;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+nav {
+    padding: 2rem;
+    grid-column: 2 / 4;  
+    text-decoration: underline;  
+}
+
+.log {
+    text-align: end;
+    grid-column: 4 / 4;
+}
+
+.main {
+    padding: 2rem;
+    grid-column: 2 / 4;  
+    text-decoration: underline;  
+    justify-content: center;
+    text-align: center;
+}
+
+#moods {
+    place-content: center;
+    padding: 40px;
+}
+
+#form {
+    padding-top: 25px;
+}

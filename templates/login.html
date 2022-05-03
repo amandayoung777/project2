@@ -7,21 +7,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
     <title>Food For Your Mood</title>
-    <link rel="stylesheet" href="/static/styles.css"/>
 </head>
 <body>
-    <nav><h1>Food for Your Mood!</h1></nav>
-    {% if session['id']  %}
-    <p>Logged in as {{ session['name'] }}</p>
-    <a class ="log" href="/logout">Log Out</a>
-    {% else %}
-    <a class="log" href="/login">Login</a>
-    {% endif %}
-    
-
-    {% block content %}
-    {% endblock %}
     
 </body>
 </html>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Log in </h1>
+<div>
+    <form action="/login" method="POST">
+        email: <input type="text" name="email"><br>
+        password: <input type="password" name="password"><br>
+        <input type="submit" value="Log in">
+    </form>
+    <p><a href="{{ url_for('index') }}">Cancel</a></p>
+</div>
+{% endblock %}
