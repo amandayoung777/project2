@@ -34,7 +34,7 @@ def mood_action():
     # for result in range(len(results)):
     #     print(results[result], end="")
     # initial_result = random.choice(results)
-    selected_food = random.choice(results[0])
+    selected_food = random.choice(results)
     # selected_food = initial_result.str.replace('(','').replace(')','').replace(',','')
     print(selected_food)
     return render_template('food.html', selected_food = selected_food, mood_request = mood_request)
@@ -79,8 +79,24 @@ def log_out():
   session.clear()
   return redirect('/')
    
+# @app.route('/create')
+# def create():
+#     return render_template('create.html')
 
-
+# @app.route('/create_action', methods=['POST'])
+# def create_action():
+#     email = request.form.get('email')
+#     firstname = request.form.get('firstname')
+#     surname = request.form.get('surname')
+#     password = request.form.get('password')
+#     conn = psycopg2.connect(DATABASE_URL)
+#     cur = conn.cursor()
+#     cur.execute('SELECT * FROM users WHERE email = %s', [email])
+#     results = cur.fetchall()
+#     conn.commit()
+#     conn.close()
+#     print(results)
+#     return redirect ('/')
 
 
 
