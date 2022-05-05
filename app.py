@@ -3,8 +3,16 @@ import os
 import random
 import bcrypt
 import psycopg2
+import json
+import requests
+
 DATABASE_URL = os.environ.get('DATABASE_URL', 'dbname=moodfood')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'this is a pretend secret key')
+
+SEARCH_URL = 'https://api.spoonacular.com/recipes/complexSearch'
+RECIPE_URL ='https://api.spoonacular.com/recipes/{id}/information'
+
+API_KEY = 'fdf2c871d7e345309fa9b1aa557e8665'
 
 conn = psycopg2.connect(DATABASE_URL)
 cur = conn.cursor()
@@ -37,7 +45,30 @@ def mood_action():
     selected = random.choice(results)
     initial_result = list(selected)
     selected_food = ''.join(initial_result)
+    food = selected_food
+    params = {
+            'query': food,
+            'apiKey': API_KEY,
+        }
+    response = requests.get(SEARCH_URL, params=params)
+    json_data = response.json()
+    recipes = json_data['results']
+    meal = random.choice(recipes)
+    Title = meal["title"]
+    Image = meal["image"]
+    print(json.dumps(recipes, indent=4))
     print(selected_food)
+    print (Title)
+    recipe_id = meal['id']
+    recipe_response = requests.get(RECIPE_URL.format(id=recipe_id), params=params)
+    recipe_json_data = recipe_response.json()
+    recipe = recipe_json_data
+    Instructions = recipe["instructions"]
+    Ingredients = recipe["extendedIngredients"]
+    # print(json.dumps(recipe_json_data, indent=4))
+    # print(Instructions, Ingredients)
+    # return recipes
+
     return render_template('food.html', selected_food = selected_food, mood_request = mood_request)
 
 @app.route('/login')
