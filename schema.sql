@@ -1,9 +1,11 @@
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS food;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
+    username TEXT NOT NULL,
+    firstname TEXT NOT NULL,
+    lastname TEXT NOT NULL,
     email TEXT,
     password TEXT,
     admin TEXT    

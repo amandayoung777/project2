@@ -24,6 +24,8 @@
         password: <input type="password" name="password"><br>
         <input type="submit" value="Log in">
     </form>
+    <p> {{ message }}</p>
+    <p><a href="{{ url_for('create') }}">I need to create an account</a></p>
     <p><a href="{{ url_for('index') }}">Cancel</a></p>
 </div>
 {% endblock %}
