@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0 auto;
   }
-  
+
 body {
     max-width: fit-content;
     margin: 0 auto;
@@ -19,6 +19,11 @@ nav {
 }
 
 .log {
+    text-align: end;
+    grid-column: 4 / 4;
+}
+
+.create {
     text-align: end;
     grid-column: 4 / 4;
 }

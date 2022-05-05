@@ -5,6 +5,7 @@ import bcrypt
 import psycopg2
 import json
 import requests
+import replace
 
 DATABASE_URL = os.environ.get('DATABASE_URL', 'dbname=moodfood')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'this is a pretend secret key')
@@ -63,13 +64,26 @@ def mood_action():
     recipe_response = requests.get(RECIPE_URL.format(id=recipe_id), params=params)
     recipe_json_data = recipe_response.json()
     recipe = recipe_json_data
-    Instructions = recipe["instructions"]
-    Ingredients = recipe["extendedIngredients"]
-    # print(json.dumps(recipe_json_data, indent=4))
-    # print(Instructions, Ingredients)
+    str1 = recipe["instructions"]
+    str2 = str1.replace('<ol>', '')
+    str3 = str2.replace('</ol>', '')
+    str4 = str3.replace('<li>', '')
+    instructions = str4.replace('</li>','')
+    ingredients = recipe["extendedIngredients"]
+    recipe_ingredients = []
+    for ingredient in ingredients:
+        ingname = ingredient['original']
+        recipe_ingredients.append(ingname)
+ 
+
+    Time = recipe["readyInMinutes"]
+    Servings = recipe["servings"]
+    print(json.dumps(ingredients, indent=4))
+    print(recipe_ingredients)
+    print(instructions)
     # return recipes
 
-    return render_template('food.html', selected_food = selected_food, mood_request = mood_request)
+    return render_template('food.html', instructions = instructions, recipe_ingredients = recipe_ingredients, Time = Time, Servings = Servings, selected_food = selected_food, mood_request = mood_request, Title = Title, Image = Image)
 
 @app.route('/login')
 def login():
