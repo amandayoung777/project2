@@ -20,12 +20,16 @@
     <p>
         <img src=" {{ Image }} " >
     </p> 
-    <p>How long will this take me to make? {{ Time }}</p>
-    <p>How many people will this feed? {{ Servings }}</p>
-    <p>Ingredients:</p>
-    {{recipe_ingredients}}
-    <p>Recipe:</p>
-    {{instructions}}
+    <div class="recipe">
+    <p class="time">How long will this take me to make? {{ Time }}</p>
+    <p class="serving">How many people will this feed? {{ Servings }}</p>
+    <p class="shoppinglist">Shopping List:</p>
+    {% for ing in recipe_ingredients %}
+    <li class="ingredients"> {{ ing }} </li>
+    {%endfor%}
+    </div>
+    <p><a href="{{ url_for('recipe') }}">Click Here</a> for the recipe</p>
+    
     
     <p>I'm actually in a different <a href="{{ url_for('index') }}">mood</a></p>
 </div>

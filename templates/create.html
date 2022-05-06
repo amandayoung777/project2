@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css" />
+    <title>Food For Your Mood</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <form action="/create_action" method="POST">
+        email:<input type="text" name="email" autocomplete="off"><br>
+        first name:<input type="text" name="firstname" autocomplete="off"><br>
+        last name:<input type="text" name="lastname" autocomplete="off"><br>
+        password: <input type="password" name="password" autocomplete="off"><br>
+        <input type="submit" value="Create Account">
+    </form>
+    {% endblock %}
+</body>
+</html>

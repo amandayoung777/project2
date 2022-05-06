@@ -1,9 +1,6 @@
-* {
-    box-sizing: border-box;
-    margin: 0 auto;
-  }
 
 body {
+    box-sizing: border-box;
     max-width: fit-content;
     margin: 0 auto;
     display: grid;
@@ -12,15 +9,34 @@ body {
     
 }
 
-nav {
-    padding: 2rem;
-    grid-column: 2 / 4;  
-    text-decoration: underline;  
+#pageheader nav > ul {
+    padding-left: 0;
+    display: flex;
+    margin: 0;
+    list-style-type: none;
+}
+
+/* #pageheader nav > ul > li {
+
+} */
+
+#pageheader nav > ul > li > a {
+    
+    text-align: center;
+    flex: 1;
+    margin-right: 25px;
+    background-color: black;
+    width: 100%;
+    display: inline-block;
+    padding: 20px 10px 20px 10px;
+    color: white;
+   
 }
 
 .log {
     text-align: end;
     grid-column: 4 / 4;
+    margin: 25px;
 }
 
 .create {
@@ -29,18 +45,57 @@ nav {
 }
 
 .main {
-    padding: 2rem;
-    grid-column: 2 / 4;  
+    padding: 2rem; 
     text-decoration: underline;  
     justify-content: center;
     text-align: center;
 }
 
-#moods {
-    place-content: center;
-    padding: 40px;
+p {
+    text-decoration: none;
+    font-weight: bold;
 }
 
-#form {
-    padding-top: 25px;
+/* #moods {
+
+    padding: 40px;
+} */
+
+input {
+    padding: 10px;
+    margin: 10px;
+}
+
+.email {
+    padding-left: 27px;
+}
+
+.submit {
+    padding-left: 82px;
+}
+.form {
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    box-shadow:0 0 15px 4px rgba(163, 160, 160, 0.06);
+}
+
+#mood {
+    padding: 25px;
+    margin: 10px;
+    width: 100%;
+}
+
+footer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border-right: none;
+    text-align: start;
+    grid-column: 1 / 4;
+    font-size: small;
+    text-decoration: none;
+}
+
+select {
+    border-radius: 10px;
 }

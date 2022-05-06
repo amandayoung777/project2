@@ -11,19 +11,28 @@
     <link rel="stylesheet" href="/static/styles.css"/>
 </head>
 <body>
-    <nav><h1>Food for Your Mood!</h1></nav>
-    <!-- <a class="create" href="/create">Create Account</a> -->
+    <header id="pageheader">
+        <h1>Food for Your Mood!</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('add_food') }}">Add a Food</a></li>
+                <li><a href="{{ url_for('create') }}">Create Account</a></li>
+                <li><a href="{{ url_for('index') }}">Home Page</a></li>
+            </ul>
+        </nav>   
+    </header>
+    
+
     {% if session['name']  %}
-    <p>Logged in as {{ session['name'] }}</p>
-    <a class ="log" href="/logout">Log Out</a>
+    <p class="log">Logged in as {{ session['name'] }}<a href="/logout">   Log Out</a></p>
     {% else %}
-    <a class="log" href="/login">Login</a>
-    
+    <p class ="log"><a href="/login">Login</a></p>  
     {% endif %}
-    
+
 
     {% block content %}
     {% endblock %}
     
 </body>
+<footer>Amanda Young 2022</footer>
 </html>
