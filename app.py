@@ -146,8 +146,8 @@ def create():
 @app.route('/create_action', methods=['POST'])
 def create_action():
     email = request.form.get('email')
-    firstname = request.form.get('firstname').capitalize
-    lastname = request.form.get('lastname').capitalize
+    firstname = request.form.get('firstname')
+    lastname = request.form.get('lastname')
     password = request.form.get('password')
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     conn = psycopg2.connect(DATABASE_URL)
