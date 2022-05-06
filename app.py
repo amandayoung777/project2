@@ -1,5 +1,5 @@
 from genericpath import exists
-from flask import Flask, render_template, request, redirect, session, replace
+from flask import Flask, render_template, request, redirect, session
 import os
 import random
 import bcrypt
@@ -64,12 +64,20 @@ def mood_action():
     recipe_id = meal['id']
     recipe_response = requests.get(RECIPE_URL.format(id=recipe_id), params=params)
     recipe_json_data = recipe_response.json()
-    recipe = recipe_json_data
-    str1 = recipe["instructions"]
-    str2 = str1.replace('<ol>', '')
-    str3 = str2.replace('</ol>', '')
-    str4 = str3.replace('<li>', '')
-    instructions = str4.replace('</li>','')
+    recipe = recipe_json_data 
+    # recipe_instructions=[] 
+    x = str(recipe["instructions"])
+    y = str(x.strip().split('.'))
+    a = str(y.split(','))    
+    b = a.replace('<ol>', '')
+    c = b.replace('</ol>', '')
+    d = c.replace('<li>', '')
+    e = d.replace('</li>', '')
+    f = e.replace('"', '')
+    instructions = f.replace('\\n','')
+
+    # recipe_instructions.append(instructions)
+
     ingredients = recipe["extendedIngredients"]
     recipe_ingredients = []
     for ingredient in ingredients:
@@ -85,6 +93,10 @@ def mood_action():
     # return recipes
 
     return render_template('food.html', instructions = instructions, recipe_ingredients = recipe_ingredients, Time = Time, Servings = Servings, selected_food = selected_food, mood_request = mood_request, Title = Title, Image = Image)
+
+@app.route('/recipe')
+def recipe():
+    return render_template('recipe.html')
 
 @app.route('/login')
 def login():
@@ -140,7 +152,13 @@ def create_action():
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     conn = psycopg2.connect(DATABASE_URL)
     cur = conn.cursor()
-    cur.execute('INSERT INTO users (email, firstname, lastname, password) VALUES (%s, %s, %s, %s)', [email, firstname, lastname, password_hash])
+    cur.execute('SELECT * from users WHERE email=%s', [email])
+    email_check = cur.fetchall()
+    if email_check:
+        reject_email = "There is already an account for this email address. Try logging in"
+        return render_template('login.html', reject_email = reject_email)
+    else:
+        cur.execute('INSERT INTO users (email, firstname, lastname, password) VALUES (%s, %s, %s, %s)', [email, firstname, lastname, password_hash])
     
     conn.commit()
     conn.close()
