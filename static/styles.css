@@ -6,7 +6,12 @@ body {
     display: grid;
     grid-template: auto 1fr auto / auto 1fr auto;
     font-family: 'Roboto', sans-serif;
+    color: rgb(94, 91, 91);
     
+}
+
+.recipe {
+    text-decoration: none;
 }
 
 #pageheader nav > ul {
@@ -16,16 +21,16 @@ body {
     list-style-type: none;
 }
 
-/* #pageheader nav > ul > li {
-
-} */
+a {
+    color: rgb(74, 97, 93);
+}
 
 #pageheader nav > ul > li > a {
     
     text-align: center;
     flex: 1;
     margin-right: 25px;
-    background-color: black;
+    background-color: rgb(74, 97, 93);
     width: 100%;
     display: inline-block;
     padding: 20px 10px 20px 10px;
@@ -46,9 +51,11 @@ body {
 
 .main {
     padding: 2rem; 
-    text-decoration: underline;  
+    padding-right: none;  
     justify-content: center;
     text-align: center;
+    grid-template: auto 1fr auto / auto 1fr auto;
+    
 }
 
 p {
@@ -56,34 +63,59 @@ p {
     font-weight: bold;
 }
 
-/* #moods {
+.food {
+    text-align: left;
+    text-decoration: none;
+    grid-column: 2 / 3;
+}
 
-    padding: 40px;
-} */
+.ingredients {
+    text-align: left;
+}
+
+nav {
+    width: 100%;
+    background-color: rgb(74, 97, 93);
+    padding: 20px 10px 20px 10px;
+}
 
 input {
     padding: 10px;
     margin: 10px;
 }
 
-.email {
-    padding-left: 27px;
-}
-
 .submit {
-    padding-left: 82px;
+    padding-left: 50px;
 }
 .form {
     padding: 10px;
     margin: 10px;
-    width: 80%;
-    box-shadow:0 0 15px 4px rgba(163, 160, 160, 0.06);
+    width: 50%;
+    box-shadow: 0 0 15px 15px rgb(157, 154, 154);
+    place-items: center;
+    margin-bottom: 30px;
+    margin-top: 25px;
+    grid-column: 1 / 4;
+    border-radius: 5px;
 }
 
+.createaccount {
+    padding: 30px;
+    margin-top: 30px;
+    width: 50%;
+    box-shadow: 0 0 15px 15px rgb(157, 154, 154);
+    place-items: center;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.loginpage {
+    padding: 12px;
+}
 #mood {
-    padding: 25px;
+    padding: 10px;
     margin: 10px;
-    width: 100%;
+    width: 80%;
 }
 
 footer {
@@ -99,3 +131,32 @@ footer {
 select {
     border-radius: 10px;
 }
+
+.profile {
+    grid-column: 1 / 4;
+}
+
+.moods {
+    text-align: left;
+    grid-column: 1 / 4;
+}
+
+.shoppinglist {
+    grid-column: 3 / 4;
+    text-decoration: none;
+}
+
+.recipe {
+    text-decoration: none;
+}
+.aside {
+    grid-column: 2 / 3;
+    padding: 2rem; 
+    border: auto;
+    margin-top: 15px;
+}
+
+.food {
+    padding: 25px 10px;
+    outline: 5px solid rgb(74, 97, 93);
+} 

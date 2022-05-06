@@ -16,7 +16,7 @@
     {% extends 'base.html' %}
     {% block content %}
     <div class="main">
-        <label id="moods" for="moods">What's Your Mood?</label>
+        <h2 class="moods"><label id="moods" for="moods">What's Your Mood?</label></h2>
         <div class="form">
             <form action="/mood_action" method="POST">
                 <select id="mood" name="mood">

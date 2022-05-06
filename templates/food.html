@@ -14,25 +14,29 @@
     {% extends 'base.html' %} 
     {% block content %}
     <div class="main">
-    <p>Since you are feeling... {{mood_request}}</p>
-    <p>Your food recommendation is: {{selected_food}}</p>
-    <p>What about making {{ Title }}</p>
+      <div class="food">
+        <p>Since you are feeling... {{mood_request}}</p>
+      <p>Your food recommendation is: {{selected_food}}</p>
+      <p>What about making: {{ Title }}</p>
+      
+    
     <p>
         <img src=" {{ Image }} " >
     </p> 
-    <div class="recipe">
-    <p class="time">How long will this take me to make? {{ Time }}</p>
-    <p class="serving">How many people will this feed? {{ Servings }}</p>
-    <p class="shoppinglist">Shopping List:</p>
-    {% for ing in recipe_ingredients %}
-    <li class="ingredients"> {{ ing }} </li>
-    {%endfor%}
-    </div>
-    <p><a href="{{ url_for('recipe') }}">Click Here</a> for the recipe</p>
-    
-    
+       <p>Shopping List:</p>
+        {% for ing in recipe_ingredients %}
+          <li class="ingredients"> {{ ing }} </li>
+          {%endfor%}
+          
+    </div> 
+    </div>   
+    <div class="aside">
+      <p class="time">How long will this take me to make? {{ Time }} minutes</p>
+      <p class="serving">How many people will this feed? {{ Servings }}</p>  
+    <p><a href="{{ url_for('recipe') }}">Click Here</a> for the recipe</p> 
     <p>I'm actually in a different <a href="{{ url_for('index') }}">mood</a></p>
-</div>
+    </div>
+
     {% endblock %}
   </body>
 </html>

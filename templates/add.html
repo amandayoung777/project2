@@ -13,7 +13,7 @@
 <body>
     {% extends 'base.html' %}
     {% block content %}
-    <div id="form">
+    <div class="form">
         {% if session['name']  %}
   <form action="/add_food_action" method="POST">
         Food:<input type="text" name="name" autocomplete="off"><br>
