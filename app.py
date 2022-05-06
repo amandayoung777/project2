@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, session
+from genericpath import exists
+from flask import Flask, render_template, request, redirect, session, replace
 import os
 import random
 import bcrypt
@@ -89,33 +90,37 @@ def mood_action():
 def login():
     return render_template('login.html')
 
-# @app.route('/login', methods=['POST'])
-# def login_action():
-#     email = request.form.get('email')
-#     password = request.form.get('password')
-#     print(f'{email} {password}')
-#     conn = psycopg2.connect(DATABASE_URL)
-#     cur = conn.cursor()
-#     cur.execute('SELECT * FROM users WHERE username = %s', [username])
-#     results = cur.fetchall()
-#     print(results)
-#     conn.close()
+@app.route('/login', methods=['POST'])
+def login_action():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    print(email, password)
+    conn = psycopg2.connect(DATABASE_URL)
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM users WHERE email = %s', [email])
+    results = cur.fetchall()
+    print(results)
+    conn.close()
 
-#     if not results:
-#         return render_template('login.html', message='Cannot find user with this name')
-#     else:
-#         password_hash = results[0][4]
-#         valid = bcrypt.checkpw(password.encode(), password_hash.encode())
-#         if valid:
-#             user_name = results[0][2]
-#             print(f'{user_name}, password valid')
-#             session['email'] = email
-#             session['name'] = user_name
-#             return redirect('/')
-#         else:
-#             print('invalid')
-#             return render_template('login.html', message='User not found')
+    if not results:
+        return render_template('login.html', message='Cannot find user with this name')
+    else:
+        password_hash = results[0][4]
+        valid = bcrypt.checkpw(password.encode(), password_hash.encode())
+        if valid:
+            user_name = results[0][1]
+            print(f'{user_name}, password valid')
+            # session['email'] = email
+            user_name = user_name
+            session['name'] = user_name
+            return redirect('/account')
+        else:
+            print('invalid')
+            return render_template('login.html', message='User not found')
 
+@app.route('/account')
+def profile():
+  return render_template('account.html')
 
 @app.route('/logout')
 def log_out():
@@ -128,21 +133,61 @@ def create():
 
 @app.route('/create_action', methods=['POST'])
 def create_action():
-    username = request.form.get('username')
-    firstname = request.form.get('firstname')
-    lastname = request.form.get('lastname')
     email = request.form.get('email')
+    firstname = request.form.get('firstname').capitalize
+    lastname = request.form.get('lastname').capitalize
     password = request.form.get('password')
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     conn = psycopg2.connect(DATABASE_URL)
     cur = conn.cursor()
-    cur.execute('INSERT INTO users (username, firstname, lastname, email, password) VALUES (%s, %s, %s, %s, %s)', [username, firstname, lastname, email, password_hash])
+    cur.execute('INSERT INTO users (email, firstname, lastname, password) VALUES (%s, %s, %s, %s)', [email, firstname, lastname, password_hash])
     
     conn.commit()
     conn.close()
     print(results)
-    return redirect ('/login')
+    def login_action(email):
+        email = request.form.get('email')
+        password = request.form.get('password')
+        conn = psycopg2.connect(DATABASE_URL)
+        cur = conn.cursor()
+        cur.execute('SELECT * FROM users WHERE email = %s', [email])
+        results = cur.fetchall()
+        print(results)
+        conn.close()
+        password_hash = results[0][4]
+        valid = bcrypt.checkpw(password.encode(), password_hash.encode())
+        user_name = results[0][1]
+        session['email'] = email
+        session['name'] = user_name
+    login_action(email)
+    return redirect('/account')
 
+@app.route('/add_food')
+def add_food():
+  return render_template('add.html')
+
+@app.route('/add_food_action', methods=['POST'])
+def add_food_action():
+    food = request.form.get('name')
+    mood = request.form.get('mood')
+    print(food,mood)
+    conn = psycopg2.connect(DATABASE_URL)
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM food WHERE name=%s', [food])
+    food_check = cur.fetchall()
+    if food_check:
+        cur.execute('SELECT * FROM food WHERE mood = %s', [mood])
+        mood_check = cur.fetchall()
+        reject_message = "This food already exists with this mood"
+        if mood_check:
+            return render_template('account.html', reject_message=reject_message)
+    else:
+        cur.execute('INSERT INTO food (name, mood) VALUES (%s, %s)', [food, mood])
+    
+    conn.commit()
+    conn.close()
+    success_message = "Success! Your food was added"
+    return render_template ('account.html', success_message=success_message)
 
 
 

@@ -12,11 +12,13 @@
 </head>
 <body>
     <nav><h1>Food for Your Mood!</h1></nav>
-    {% if session['id']  %}
+    <!-- <a class="create" href="/create">Create Account</a> -->
+    {% if session['name']  %}
     <p>Logged in as {{ session['name'] }}</p>
     <a class ="log" href="/logout">Log Out</a>
     {% else %}
     <a class="log" href="/login">Login</a>
+    
     {% endif %}
     
 

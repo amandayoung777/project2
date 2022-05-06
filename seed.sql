@@ -28,4 +28,4 @@ INSERT INTO food (name, mood) VALUES ('Fries', 'frantic');
 INSERT INTO food (name, mood) VALUES ('Salad', 'cheerful');
 INSERT INTO food (name, mood) VALUES ('Salad', 'frantic');
 
-INSERT INTO users (username, firstname, lastname, email, admin) VALUES ('Amanda', 'Amanda', 'Young', 'amanda.young@example', 'admin')
+INSERT INTO users (firstname, lastname, email, admin) VALUES ('Amanda', 'Young', 'amanda.young@example', 'admin')

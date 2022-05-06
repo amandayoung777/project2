@@ -16,8 +16,16 @@
     <div class="main">
     <p>Since you are feeling... {{mood_request}}</p>
     <p>Your food recommendation is: {{selected_food}}</p>
-    <p>What about making {{Title}}</p>
-    <p>{{Image}}</p>
+    <p>What about making {{ Title }}</p>
+    <p>
+        <img src=" {{ Image }} " >
+    </p> 
+    <p>How long will this take me to make? {{ Time }}</p>
+    <p>How many people will this feed? {{ Servings }}</p>
+    <p>Ingredients:</p>
+    {{recipe_ingredients}}
+    <p>Recipe:</p>
+    {{instructions}}
     
     <p>I'm actually in a different <a href="{{ url_for('index') }}">mood</a></p>
 </div>
