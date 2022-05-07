@@ -31,4 +31,4 @@ This is an app which allows a use to select a mood and be given a random recipe 
 * Push database to Heroku
 
 ## Location:
-The app can be found [here] (https://limitless-plateau-01317.herokuapp.com/).
+The app can be found here (https://limitless-plateau-01317.herokuapp.com/).
