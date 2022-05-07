@@ -2,7 +2,7 @@
 
 **Food For Your Mood** is a project that I am creating as a student doing a Software Engineering Immersive at General Assembly.
 
-![page image](https://imgur.com/wXZEpvy)
+![page image](/static/images/Image.png))
 
 This is an app which allows a use to select a mood and be given a random recipe based on their mood.
 
