@@ -41,9 +41,7 @@ def mood_action():
     conn.commit()
     conn.close()
     print(results)
-    # for result in range(len(results)):
-    #     print(results[result], end="")
-    # initial_result = random.choice(results)
+
     selected = random.choice(results)
     initial_result = list(selected)
     selected_food = ''.join(initial_result)
@@ -61,6 +59,7 @@ def mood_action():
     print(json.dumps(recipes, indent=4))
     print(selected_food)
     print (Title)
+    
     recipe_id = meal['id']
     recipe_response = requests.get(RECIPE_URL.format(id=recipe_id), params=params)
     recipe_json_data = recipe_response.json()
