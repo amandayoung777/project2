@@ -1,38 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
     <title>Food For Your Mood</title>
-    <link rel="stylesheet" href="/static/styles.css"/>
-</head>
-<body>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
     <header id="pageheader">
-        <h1>Food for Your Mood!</h1>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('add_food') }}">Add a Food</a></li>
-                <li><a href="{{ url_for('create') }}">Create Account</a></li>
-                <li><a href="{{ url_for('index') }}">Home Page</a></li>
-            </ul>
-        </nav>   
+      <h1>Food for Your Mood!</h1>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('add_food') }}">Add a Food</a></li>
+          <li><a href="{{ url_for('create') }}">Create Account</a></li>
+          <li><a href="{{ url_for('index') }}">Home Page</a></li>
+        </ul>
+      </nav>
     </header>
-    
 
-    {% if session['name']  %}
-    <p class="log">Logged in as {{ session['name'] }}<a href="/logout">   Log Out</a></p>
+    {% if session['name'] %}
+    <p class="log">
+      Logged in as {{ session['name'] }}<a href="/logout"> Log Out</a>
+    </p>
     {% else %}
-    <p class ="log"><a href="/login">Login</a></p>  
-    {% endif %}
-
-
-    {% block content %}
-    {% endblock %}
-    
-</body>
-<footer>Amanda Young 2022</footer>
+    <p class="log"><a href="/login">Login</a></p>
+    {% endif %} {% block content %} {% endblock %}
+  </body>
+  <footer>Amanda Young 2022</footer>
 </html>

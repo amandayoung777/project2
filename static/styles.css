@@ -6,8 +6,7 @@ body {
     display: grid;
     grid-template: auto 1fr auto / auto 1fr auto;
     font-family: 'Roboto', sans-serif;
-    color: rgb(94, 91, 91);
-    
+    color: rgb(94, 91, 91);   
 }
 
 .recipe {
@@ -67,6 +66,8 @@ p {
     text-align: left;
     text-decoration: none;
     grid-column: 2 / 3;
+    padding: 25px 10px;
+    outline: 5px solid rgb(74, 97, 93);
 }
 
 .ingredients {
@@ -156,7 +157,3 @@ select {
     margin-top: 15px;
 }
 
-.food {
-    padding: 25px 10px;
-    outline: 5px solid rgb(74, 97, 93);
-} 

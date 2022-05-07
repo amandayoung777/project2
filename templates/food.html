@@ -4,37 +4,39 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
     <title>Food For Your Mood</title>
   </head>
   <body>
-    {% extends 'base.html' %} 
-    {% block content %}
+    {% extends 'base.html' %} {% block content %}
     <div class="main">
       <div class="food">
         <p>Since you are feeling... {{mood_request}}</p>
-      <p>Your food recommendation is: {{selected_food}}</p>
-      <p>What about making: {{ Title }}</p>
-      
-    
-    <p>
-        <img src=" {{ Image }} " >
-    </p> 
-       <p>Shopping List:</p>
+        <p>Your food recommendation is: {{selected_food}}</p>
+        <p>What about making: {{ Title }}</p>
+
+        <p>
+          <img src=" {{ Image }} " />
+        </p>
+        <p>Shopping List:</p>
         {% for ing in recipe_ingredients %}
-          <li class="ingredients"> {{ ing }} </li>
-          {%endfor%}
-          
-    </div> 
-    </div>   
+        <li class="ingredients">{{ ing }}</li>
+        {%endfor%}
+      </div>
+    </div>
     <div class="aside">
       <p class="time">How long will this take me to make? {{ Time }} minutes</p>
-      <p class="serving">How many people will this feed? {{ Servings }}</p>  
-    <p><a href="{{ url_for('recipe') }}">Click Here</a> for the recipe</p> 
-    <p>I'm actually in a different <a href="{{ url_for('index') }}">mood</a></p>
+      <p class="serving">How many people will this feed? {{ Servings }}</p>
+      <p><a href="{{ url_for('recipe') }}">Click Here</a> for the recipe</p>
+      <p>
+        I'm actually in a different <a href="{{ url_for('index') }}">mood</a>
+      </p>
     </div>
 
     {% endblock %}

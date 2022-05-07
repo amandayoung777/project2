@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
     <title>Food For Your Mood</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body></body>
 </html>
-{% extends "base.html" %}
-
-{% block content %}
-<h1>Your profile </h1>
+{% extends "base.html" %} {% block content %}
+<h1>Your profile</h1>
 <div class="profile">
-    <p> {{ message }}</p>
-    {{ reject_message}}
-    {{ success_message}}
-    <h3>I want to <a href="{{ url_for('add_food') }}">add a food</a></h3>
-    <p><a href="{{ url_for('index') }}">Back Home</a></p>
+  <p>{{ message }}</p>
+  {{ reject_message}} {{ success_message}}
+  <h3>I want to <a href="{{ url_for('add_food') }}">add a food</a></h3>
+  <p><a href="{{ url_for('index') }}">Back Home</a></p>
 </div>
 {% endblock %}
